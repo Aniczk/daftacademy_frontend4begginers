@@ -217,7 +217,23 @@ NAWIGACJA
 @media screen and (device-width: 360px) and (device-height: 640px) {
     .page-navigation__items {
         padding: 15px;
-    };
+        display: none;
+    }
+
+    .page-navigation__hamburger-menu {
+        width: 35px;
+        height: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .line {
+        width: 100%;
+        height: 3px;
+        background-color: #CCC8FF;
+        opacity: 0.8;
+    }
 }
 
 /*
@@ -451,6 +467,7 @@ SEKCJA "CONCERTS"
     .concerts__location {
         text-align: center;
     }
+
 }
 
 /*
@@ -469,7 +486,7 @@ SEKCJA "VIDEO"
         height: auto;
     }
     #video {
-        box-size: 320px;
+        box-sizing: 320px;
     }
 
 }
@@ -480,18 +497,47 @@ SEKCJA "PHOTOS"
 */
 
 .gallery {
-    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(80% + 20px); /* Znosi wpływ .gallery__item { margin-left: 20px; } */
+    margin-top: -20px; /* Znosi wpływ .gallery__item { margin-top: 20px; } */
 }
 
-@supports (display:grid) {
+.gallery__item {
+    width: calc((100% - 3 * 20px) / 3);
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.gallery__image {
+    width: 100%;
+    border-top: 3px solid #EF008E;
+}
+
+@supports (display: grid) {
+    .gallery {
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: 0;
+    }
+
+    .gallery__item {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/*@supports (display:grid) {
     .gallery {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
-}
+}*/
 
-@supports not (display:grid) {
+/*@supports not (display:grid) {
     .gallery{
         display: flex;
         flex-wrap: wrap;
@@ -500,12 +546,12 @@ SEKCJA "PHOTOS"
     .gallery__image {
         margin: 10px;
     }
-}
+}*/
 
-.gallery__image {
+/*.gallery__image {
     max-width: 100%;
     border-top: 3px solid #EF008E;
-}
+}*/
 
 @media screen and (device-width: 360px) and (device-height: 640px) {
     .gallery {
@@ -516,6 +562,7 @@ SEKCJA "PHOTOS"
     .gallery__image {
         margin: 10px;
     }
+
 }
 
 /*
@@ -557,4 +604,5 @@ SEKCJA "CONTACT"
         margin-bottom: 10px;
         text-align: center;
     }
+
 }
